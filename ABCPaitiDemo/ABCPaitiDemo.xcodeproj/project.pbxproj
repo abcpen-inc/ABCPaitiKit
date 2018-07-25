@@ -34,6 +34,8 @@
 		75DF752FE17C4ACA175A57BA /* libPods-ABCPaitiDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9CEE15879BF799CEBE42F56 /* libPods-ABCPaitiDemo.a */; };
 		D705E1C7205E1E5100F30C60 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = D705E1C6205E1E5100F30C60 /* config.xml */; };
 		D705E207205E1EC700F30C60 /* www in Resources */ = {isa = PBXBuildFile; fileRef = D705E206205E1EC600F30C60 /* www */; };
+		D712B564207F3F49006526A6 /* ABCPaitiKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D727240A205D84370071A59E /* ABCPaitiKit.framework */; };
+		D712B565207F3F49006526A6 /* ABCPaitiKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D727240A205D84370071A59E /* ABCPaitiKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D72723DA205D83BB0071A59E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D72723D9205D83BB0071A59E /* AppDelegate.m */; };
 		D72723E0205D83BB0071A59E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D72723DE205D83BB0071A59E /* Main.storyboard */; };
 		D72723E2205D83BB0071A59E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D72723E1205D83BB0071A59E /* Assets.xcassets */; };
@@ -74,6 +76,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D712B565207F3F49006526A6 /* ABCPaitiKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +147,7 @@
 		D72723F8205D83BB0071A59E /* ABCPaitiDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ABCPaitiDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D72723FC205D83BB0071A59E /* ABCPaitiDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABCPaitiDemoUITests.m; sourceTree = "<group>"; };
 		D72723FE205D83BB0071A59E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D727240A205D84370071A59E /* ABCPaitiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ABCPaitiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7B8D30A2080E92A0073E2BF /* ABCQuestionPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCQuestionPlugin.h; sourceTree = "<group>"; };
 		D7B8D30F2080EAB10073E2BF /* ABCQuestionPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCQuestionPlugin.m; sourceTree = "<group>"; };
 		D7B8D3122080F84B0073E2BF /* ABCQuestionMo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCQuestionMo.h; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D712B564207F3F49006526A6 /* ABCPaitiKit.framework in Frameworks */,
 				75DF752FE17C4ACA175A57BA /* libPods-ABCPaitiDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				4D8F406B2105711B005BFFB4 /* ABCPaitiDemo-prefix.pch */,
+				D727240A205D84370071A59E /* ABCPaitiKit.framework */,
 				D72723D7205D83BB0071A59E /* ABCPaitiDemo */,
 				D72723F0205D83BB0071A59E /* ABCPaitiDemoTests */,
 				D72723FB205D83BB0071A59E /* ABCPaitiDemoUITests */,
@@ -394,7 +400,6 @@
 				D72723D3205D83BB0071A59E /* Resources */,
 				D712B566207F3F4A006526A6 /* Embed Frameworks */,
 				71B0662D01FC8E1D69F1C515 /* [CP] Copy Pods Resources */,
-				EBFA773A976BD1964730F344 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -536,7 +541,6 @@
 				"${PODS_ROOT}/BFKit/BFKit/Languages/vi.lproj",
 				"${PODS_ROOT}/BFKit/BFKit/Languages/zh-Hans.lproj",
 				"${PODS_ROOT}/BFKit/BFKit/Languages/zh-Hant.lproj",
-				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -548,7 +552,6 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/vi.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh-Hans.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh-Hant.lproj",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SAMKeychain.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -571,24 +574,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EBFA773A976BD1964730F344 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-ABCPaitiDemo/Pods-ABCPaitiDemo-frameworks.sh",
-				"${PODS_ROOT}/../ABCPitiSDK/ABCPaitiKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ABCPaitiKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ABCPaitiDemo/Pods-ABCPaitiDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
