@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sJ1-Gn-oQ0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sJ1-Gn-oQ0">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,22 +34,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itd-yS-XLf">
-                                <rect key="frame" x="164" y="278" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="startPaiti:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lvo-mp-7td"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aBf-rk-mLc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPo-ne-gUt">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
+                                        <state key="normal" title="相机"/>
+                                        <connections>
+                                            <action selector="startPaiti:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZA2-L5-L9Z"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zi0-Vo-ebd">
+                                        <rect key="frame" x="0.0" y="156" width="375" height="135.5"/>
+                                        <state key="normal" title="根据图片地址搜题"/>
+                                        <connections>
+                                            <action selector="searchWIthImageUrl:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kca-c2-jvp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSP-TK-XpV">
+                                        <rect key="frame" x="0.0" y="311.5" width="375" height="136"/>
+                                        <state key="normal" title="根据题目内容搜题"/>
+                                        <connections>
+                                            <action selector="searWithText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gzw-GC-ASg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R81-uN-ACc">
+                                        <rect key="frame" x="0.0" y="467.5" width="375" height="135.5"/>
+                                        <state key="normal" title="根据qid获取详情"/>
+                                        <connections>
+                                            <action selector="getQAWithQid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KiV-wW-agx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aBf-rk-mLc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="joU-pR-S8J"/>
+                            <constraint firstItem="aBf-rk-mLc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kfv-kO-uwf"/>
+                            <constraint firstItem="aBf-rk-mLc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="n5f-A1-fbd"/>
+                            <constraint firstItem="aBf-rk-mLc" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="sRo-QM-wiE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="9sI-1J-xNj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
     </scenes>
 </document>

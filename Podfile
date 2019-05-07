@@ -13,7 +13,7 @@ target 'ABCPaitiDemo' do
     pod 'MJExtension', '~> 3.0.13'
     pod 'Cordova',  '~> 3.8.0'
     pod 'SDWebImage', '~> 4.3.3'
-
+    pod 'SVProgressHUD','~>2.2.5'
 project 'ABCPaitiDemo/ABCPaitiDemo.xcodeproj'
 
 end

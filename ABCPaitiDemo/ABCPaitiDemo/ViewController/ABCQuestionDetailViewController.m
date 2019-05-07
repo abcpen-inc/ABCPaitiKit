@@ -25,20 +25,31 @@
     
     _plugin =  [self.commandDelegate getCommandInstance:@"ABCQuestionPlugin"];
     _plugin.viewController = self;
+    [self initNavigationBar];
+}
+
+-(void) initNavigationBar
+{
+    UIButton *btnBack = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 44, 44)];
+    [btnBack setTitle:@"返回" forState:UIControlStateNormal];
+    [btnBack setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnBack addTarget:self action:@selector(btnBackClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnBack];
+}
+
+-(void) btnBackClick:(id) sender
+{
+    if (self.presentingViewController != nil && self.navigationController.viewControllers.count == 1) {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+else [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(NSDictionary *)getQueLoadingParams
 {
-    if (_imageId==nil || _imageId.length==0) {
-        return nil;
-    }
-    if ([_imageId  hasPrefix:@"'"]) {
-        _imageId=[_imageId stringByReplacingOccurrencesOfString:@"'" withString:@""];
-    }
-    
     self.localImgPath=@"";
     
-    return @{@"status":@0,
+    return @{@"status":@(0),
              @"question":@{@"update_time":self.updateTime?self.updateTime:[NSNull null],
                            @"image_path":_localImgPath?_localImgPath:@""},
              @"machine_answers":@[],
@@ -50,6 +61,10 @@
 {
     if (!answers || answers.count==0) {
         return nil;
+    }
+    
+    if (!self.imageId) {
+        self.imageId = @"";
     }
     NSMutableArray *results=[NSMutableArray array];
 //    NSMutableArray *notEmptyAnswers=[NSMutableArray array];
@@ -69,51 +84,21 @@
 
 -(void)getQueDetailWithCallBack:(void(^)(id sender))callBack
 {
-    if (_imageId==nil || _imageId.length==0) {
-        return;
-    }
-    
-    if ([_imageId  hasPrefix:@"'"]) {
-        _imageId=[_imageId stringByReplacingOccurrencesOfString:@"'" withString:@""];
-    }
-    
-    [[ABCPaitiManager sharedInstance] getQuestionAnswers:_imageId success:^(id responseObject) {
-        ABCQuestionAnswersMo *qaMo = [ABCQuestionAnswersMo mj_objectWithKeyValues:responseObject];
-        NSArray *answers= [self fillterAnswers:qaMo.answerMos];
-        NSDictionary *quesion = [qaMo.question mj_keyValues];
-        if ( (answers && answers.count>0)  && quesion) {
-            if (callBack) {
-                callBack(@{@"status":@2,
-                           @"question":quesion?quesion:[NSNull null],
-                           @"machine_answers":answers?answers:@[],}
-                         );
-            }else{
-                callBack(@{@"status":@2,
-                           @"question":quesion?quesion:[NSNull null],
-                           @"machine_answers":answers?answers:@[],
-                           @"cache_index":@(0),
-                           @"is_ask":@(NO),
-                           @"audio_top_index":@(0)});
-            }
-            
-        }else if ( (answers==nil || answers.count==0)  && quesion) {
-            if (callBack) {
-                callBack(@{@"status":[NSNumber numberWithInteger:-1],
-                           @"question":quesion?quesion:[NSNull null],
-                           @"machine_answers":@[],
-                           @"is_ask":@(NO)});
-            }
-            [self changeTitle:@0];
-        }else {
-            if (callBack) {
-                callBack(@{@"status":[NSNumber numberWithInteger:-2]});
-            }
+    if (_questionAnswersV2Mo && _questionAnswersV2Mo.result) {
+        ABCQuestionMo *questionMO = [[ABCQuestionMo alloc] init];
+        questionMO.image_id = _questionAnswersV2Mo.image_id;
+        questionMO.search_type = 1;
+        NSDictionary *quesion = [questionMO mj_keyValues];
+
+        NSArray *answers = [self fillterAnswers:_questionAnswersV2Mo.result];
+        if(callBack){
+            callBack(@{@"status":@(2),
+                       @"question":quesion,
+                       @"machine_answers":answers,
+                       }
+                     );
         }
-    } failure:^(NSString *strMsg) {
-        if (callBack) {
-            callBack(@{@"status":[NSNumber numberWithInteger:-2]});
-        }
-    }];
+    }
 }
 
 -(void)retakePhoto

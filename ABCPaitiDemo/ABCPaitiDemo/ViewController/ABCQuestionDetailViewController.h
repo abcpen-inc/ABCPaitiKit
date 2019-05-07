@@ -10,6 +10,7 @@
 #import <Cordova/CDV.h>
 #import <Cordova/CDVCommandDelegateImpl.h>
 #import "ABCQuestionAnswersMo.h"
+#import "ABCQuestionAnswersV2Mo.h"
 
 @interface ABCQuestionDetailViewController : CDVViewController
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) NSNumber *updateTime;
 @property(nonatomic, strong)  NSString *localImgPath;
 @property (nonatomic, strong) ABCQuestionAnswersMo *questionAnswersMo;
+@property (nonatomic, strong) ABCQuestionAnswersV2Mo *questionAnswersV2Mo;
 
 -(NSDictionary *)getQueLoadingParams;
 -(void)getQueDetailWithCallBack:(void(^)(id sender))callBack;

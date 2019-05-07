@@ -11,7 +11,9 @@
 #import <BFKit/BFKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "MDEditPhotoViewController.h"
-
+#import "ABCQuestionAnswersV2Mo.h"
+#import "ABCQuestionDetailViewController.h"
+#import <MJExtension/MJExtension.h>
 
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define ScreenWidth [[UIScreen mainScreen] bounds].size.width
@@ -470,13 +472,33 @@ BOOL CanUseCamera() {
 
     [self dismissViewControllerAnimated:YES completion:^{
         [[ABCPaitiManager sharedInstance] uploadSubjectPicture:stillImage progress:^(float progress) {
-            NSLog(@"uploadSubjectPicture progress %f",progress);
-        } success:^(id responseObject) {
-            NSLog(@"uploadSubjectPicture response %@",responseObject);
-            [self dismissBtnPressed:nil];
-        } failure:^(NSString *strMsg) {
-            NSLog(@"uploadSubjectPicture failure %@",strMsg);
+            [SVProgressHUD showProgress:progress];
+        } uploadSuccess:^(NSString *imagaUrl){
+            NSLog(@"imageUrl:%@",imagaUrl);
+            [SVProgressHUD showWithStatus:@"识别中..."];
+        } searchSuccess:^(id responseObject){
+            [SVProgressHUD dismiss];
+            ABCQuestionAnswersV2Mo *mo = [ABCQuestionAnswersV2Mo mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
+            ABCQuestionDetailViewController *qDetailViewCtrl = [[ABCQuestionDetailViewController alloc] init];
+            qDetailViewCtrl.questionAnswersV2Mo = mo;
+            qDetailViewCtrl.imageId = mo.image_id;
+            UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:qDetailViewCtrl];
+            [self presentViewController:navCtrl animated:YES completion:nil];
+        } failure:^(NSError *error){
+            [SVProgressHUD dismiss];
         }];
+//        [[ABCPaitiManager sharedInstance] uploadSubjectPicture:stillImage progress:^(float progress) {
+//            NSLog(@"uploadSubjectPicture progress %f",progress);
+//        } success:^(id responseObject) {
+//            ABCQuestionAnswersV2Mo *mo = [ABCQuestionAnswersV2Mo mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
+//            ABCQuestionDetailViewController *qDetailViewCtrl = [[ABCQuestionDetailViewController alloc] init];
+//            qDetailViewCtrl.questionAnswersV2Mo = mo;
+//            qDetailViewCtrl.imageId = mo.image_id;
+//            UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:qDetailViewCtrl];
+//            [self presentViewController:navCtrl animated:YES completion:nil];
+//        } failure:^(NSError *error) {
+//            NSLog(@"uploadSubjectPicture failure %@",error.domain);
+//        }];
     }];
 }
 

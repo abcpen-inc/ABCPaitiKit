@@ -14,12 +14,13 @@ var Results = {
 };
 function initResults(data) {
 	var doc = document;
+   
 	if(Results.status > 0) {
 		var array = data.machine_answers;
 		Results.len = array.length;
 		for(var i=0; i<Results.len; i++) {
 			var newObj = new Object();
-			newObj.body = array[i].body;
+			newObj.body = array[i].body.replace("登录后搜索试题查看答案无广告!!!","");
 			newObj.fold = false;
 			newObj.answer = array[i].answer;
 			newObj.analysis = array[i].analysis;
@@ -41,6 +42,7 @@ function initResults(data) {
 		} else {
 			Results.index = Math.max(data.cache_index,0);
 		}
+
 		if(Results.status === 1) {
 			myPlugin.resultTitle(1);
 			doc.getElementById("result_remind").setAttribute("style","display:inline;");

@@ -8,11 +8,9 @@
 
 #import "AppDelegate.h"
 #import <ABCPaitiKit/ABCPaitiKit.h>
+#import <CommonCrypto/CommonDigest.h>
 
-#define ABC_APP_KEY     @"5aac840df1664467549b1fba"
-#define ABC_APP_SECRET  @"F0B732122E7CADAC4D857E2C25050C7C"
-
-@interface AppDelegate ()
+@interface AppDelegate ()<ABCPaitiAuthDelegate>
 
 @end
 
@@ -21,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[ABCPaitiManager sharedInstance] startWithAppKey:ABC_APP_KEY secret:ABC_APP_SECRET];
+    [ABCPaitiManager sharedInstance].delegate = self;
     return YES;
 }
 
@@ -50,6 +48,67 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void) refreshNewToken:(void (^)(NSString *token))success
+                failure:(void (^)(NSString *msg))fail
+{
+     @synchronized(self) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString *token = [self getToken];
+            if (token.length > 0) {
+                success(token);
+            }else{
+                fail(@"");
+            }
+        });
+    }
+}
+
+- (NSString *) md5:(NSString *) str
+{
+    const char *cStr = [str UTF8String];
+    unsigned char result[16];
+    CC_MD5(cStr, strlen(cStr), result); // This is the md5 call
+    return [NSString stringWithFormat:
+            @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+            result[0], result[1], result[2], result[3],
+            result[4], result[5], result[6], result[7],
+            result[8], result[9], result[10], result[11],
+            result[12], result[13], result[14], result[15]
+            ];
+}
+
+-(NSString *) getToken
+{
+    NSString *appId = @"afd27998ad764d";
+    NSString *appSecret = @"6eb73f1419e84a31b8a7d7f44e815d63";
+    long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
+    //调用app自身的服务器获取连接im服务必须的access token
+    NSString *signStr = [NSString stringWithFormat:@"%@%lld%@",appId,timestamp,appSecret];
+    NSString *sign = [[self md5:signStr] lowercaseString];
+    NSString *url = [NSString stringWithFormat:@"https://openapi.abcpen.com/api/auth/token?appId=%@&timestamp=%lld&sign=%@&expiration=%d",appId,timestamp,sign,3600];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+                                                              cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                          timeoutInterval:60];
+    
+    [urlRequest setHTTPMethod:@"GET"];
+    
+    NSURLResponse *response = nil;
+    
+    NSError *error = nil;
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    if (error != nil) {
+        NSLog(@"error:%@", error);
+        return nil;
+    }
+    NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*)response;
+    if (httpResp.statusCode != 200) {
+        return nil;
+    }
+    NSDictionary *e = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+    return [[e objectForKey:@"data"] objectForKey:@"accessToken"];
 }
 
 

@@ -32,6 +32,7 @@
 		4D8F407E2105820F005BFFB4 /* MDCameraCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8F407C2105820F005BFFB4 /* MDCameraCoverView.m */; };
 		4D8F40802105824D005BFFB4 /* CameraCover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D8F407F2105824D005BFFB4 /* CameraCover.xib */; };
 		75DF752FE17C4ACA175A57BA /* libPods-ABCPaitiDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9CEE15879BF799CEBE42F56 /* libPods-ABCPaitiDemo.a */; };
+		D704D00A22801E1300527DF6 /* ABCQuestionAnswersV2Mo.m in Sources */ = {isa = PBXBuildFile; fileRef = D704D00922801E1300527DF6 /* ABCQuestionAnswersV2Mo.m */; };
 		D705E1C7205E1E5100F30C60 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = D705E1C6205E1E5100F30C60 /* config.xml */; };
 		D705E207205E1EC700F30C60 /* www in Resources */ = {isa = PBXBuildFile; fileRef = D705E206205E1EC600F30C60 /* www */; };
 		D72723DA205D83BB0071A59E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D72723D9205D83BB0071A59E /* AppDelegate.m */; };
@@ -128,6 +129,8 @@
 		5847B4ADEE445319346EEEE2 /* Pods-ABCPaitiDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABCPaitiDemo.release.xcconfig"; path = "../Pods/Target Support Files/Pods-ABCPaitiDemo/Pods-ABCPaitiDemo.release.xcconfig"; sourceTree = "<group>"; };
 		B9CEE15879BF799CEBE42F56 /* libPods-ABCPaitiDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ABCPaitiDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C60B61292F7CDE00E40A51AA /* Pods-ABCPaitiDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ABCPaitiDemo.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-ABCPaitiDemo/Pods-ABCPaitiDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		D704D00822801E1300527DF6 /* ABCQuestionAnswersV2Mo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABCQuestionAnswersV2Mo.h; sourceTree = "<group>"; };
+		D704D00922801E1300527DF6 /* ABCQuestionAnswersV2Mo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABCQuestionAnswersV2Mo.m; sourceTree = "<group>"; };
 		D705E1C6205E1E5100F30C60 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		D705E206205E1EC600F30C60 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		D72723D5205D83BB0071A59E /* ABCPaitiDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABCPaitiDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,12 +361,14 @@
 		D7B8D3112080F84A0073E2BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D7B8D3122080F84B0073E2BF /* ABCQuestionMo.h */,
+				D7B8D3152080F84B0073E2BF /* ABCAnswerMo.h */,
 				D7B8D3132080F84B0073E2BF /* ABCAnswerMo.m */,
 				D7B8D3142080F84B0073E2BF /* ABCQuestionAnswersMo.h */,
-				D7B8D3152080F84B0073E2BF /* ABCAnswerMo.h */,
-				D7B8D3162080F84B0073E2BF /* ABCQuestionMo.m */,
 				D7B8D3172080F84B0073E2BF /* ABCQuestionAnswersMo.m */,
+				D7B8D3122080F84B0073E2BF /* ABCQuestionMo.h */,
+				D7B8D3162080F84B0073E2BF /* ABCQuestionMo.m */,
+				D704D00822801E1300527DF6 /* ABCQuestionAnswersV2Mo.h */,
+				D704D00922801E1300527DF6 /* ABCQuestionAnswersV2Mo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -394,7 +399,7 @@
 				D72723D3205D83BB0071A59E /* Resources */,
 				D712B566207F3F4A006526A6 /* Embed Frameworks */,
 				71B0662D01FC8E1D69F1C515 /* [CP] Copy Pods Resources */,
-				D62A03E4EAE4B381100D6618 /* [CP] Embed Pods Frameworks */,
+				4BCB445345CAA14539305830 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -521,6 +526,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4BCB445345CAA14539305830 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-ABCPaitiDemo/Pods-ABCPaitiDemo-frameworks.sh",
+				"${PODS_ROOT}/../ABCPitiSDK/ABCPaitiKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ABCPaitiKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ABCPaitiDemo/Pods-ABCPaitiDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		71B0662D01FC8E1D69F1C515 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,6 +564,7 @@
 				"${PODS_ROOT}/BFKit/BFKit/Languages/zh-Hans.lproj",
 				"${PODS_ROOT}/BFKit/BFKit/Languages/zh-Hant.lproj",
 				"${PODS_ROOT}/SAMKeychain/Support/SAMKeychain.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -549,28 +577,11 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh-Hans.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh-Hant.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SAMKeychain.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ABCPaitiDemo/Pods-ABCPaitiDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D62A03E4EAE4B381100D6618 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-ABCPaitiDemo/Pods-ABCPaitiDemo-frameworks.sh",
-				"${PODS_ROOT}/../ABCPitiSDK/ABCPaitiKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ABCPaitiKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-ABCPaitiDemo/Pods-ABCPaitiDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4CAA74895C4057A7A7177A0 /* [CP] Check Pods Manifest.lock */ = {
@@ -614,6 +625,7 @@
 				D72723E8205D83BB0071A59E /* main.m in Sources */,
 				4D8F406221056FC8005BFFB4 /* UIColor+Extension.m in Sources */,
 				4D8F406921056FC8005BFFB4 /* UIActionSheet+Blocks.m in Sources */,
+				D704D00A22801E1300527DF6 /* ABCQuestionAnswersV2Mo.m in Sources */,
 				D7B8D3232080F84B0073E2BF /* DemoCameraViewController.m in Sources */,
 				4D8F403C21056F1F005BFFB4 /* MDEditPhotoViewController.m in Sources */,
 				4D8F407E2105820F005BFFB4 /* MDCameraCoverView.m in Sources */,
@@ -791,7 +803,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = XYH562EV4N;
+				DEVELOPMENT_TEAM = 67W5984PLX;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ABCPaitiDemo/ABCPaitiDemo-Prefix.pch";
 				INFOPLIST_FILE = ABCPaitiDemo/Info.plist;
@@ -799,7 +811,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.abcpen.paitidemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "06761f26-04e8-4093-af83-c4984b20f191";
-				PROVISIONING_PROFILE_SPECIFIER = Wildcard;
+				PROVISIONING_PROFILE_SPECIFIER = ABCPenWildcard;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
