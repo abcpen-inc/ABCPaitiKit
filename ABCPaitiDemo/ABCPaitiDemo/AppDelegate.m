@@ -81,8 +81,8 @@
 
 -(NSString *) getToken
 {
-    NSString *appId = @"afd27998ad764d";
-    NSString *appSecret = @"6eb73f1419e84a31b8a7d7f44e815d63";
+    NSString *appId = @"xxxxxx";
+    NSString *appSecret = @"xxxxxxx";
     long long timestamp = [[NSDate date] timeIntervalSince1970] * 1000;
     //调用app自身的服务器获取连接im服务必须的access token
     NSString *signStr = [NSString stringWithFormat:@"%@%lld%@",appId,timestamp,appSecret];
