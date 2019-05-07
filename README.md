@@ -11,6 +11,7 @@ Version | Date |Changed By |Changes
 0.0.1 | 2018-03-26|Bing|init
 0.0.2 | 2018-04-13|Bing|fix
 0.0.4 | 2018-04-13|wangchun|fix demo
+1.0.0 | 2019-05-07|Bing|fix api v2
 
 #### 
 # 准备环境
@@ -21,7 +22,7 @@ Version | Date |Changed By |Changes
 ####
 # pod导入
 ```
-pod 'ABCPaiti', '~>0.0.4'  
+pod 'ABCPaiti', '~>1.0.0'  
 ```
 
 ### 照相机图片方向(CameraOriType)
@@ -35,14 +36,24 @@ pod 'ABCPaiti', '~>0.0.4'
 # 开始接入
 ## ABCPaitiManager 初始化
 > * 这是SDK中的核心类
-> * appkey appSecret 请联系笔声申请
+> * appkey appSecret 请联系笔声申请,并由业务服务端保管
 ``` 
 // 引用ABCPaitiKit头文件
 #import <ABCPaitiKit/ABCPaitiKit.h>
 
-// 尽可能早得调用这个接口，对SDK进行初始化，如果不调用此方法，拍题功能将无法正常启动
-// 建议在AppDelegate的didFinishLaunchingWithOptions中调用。
-[[ABCPaitiManager sharedInstance] startWithAppKey:@"********" secret:@"********"];
+// 建议在AppDelegate的didFinishLaunchingWithOptions中设置ABCPaitiAuthDelegate。并实现代理中refreshNewToken的方法
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
+    [ABCPaitiManager sharedInstance].delegate = self;
+    return YES;
+}
+
+-(void) refreshNewToken:(void (^)(NSString *token))success
+                failure:(void (^)(NSString *msg))fail
+{   
+    ....从业务服务器获取accessToken;
+}
 
 ```
 
