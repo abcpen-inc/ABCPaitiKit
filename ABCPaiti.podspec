@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "ABCPaiti"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "ABCPaiti."
   s.description      = "ABCPaiti of bing"
   s.homepage         = "http://www.abcpen.com"

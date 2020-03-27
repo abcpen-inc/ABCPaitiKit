@@ -56,8 +56,10 @@ typedef enum : NSUInteger {
 /*
  * 获取搜题结果
  * UIImage :图片压缩控制在2048*2048分辨率内识别更快
+ * userId :必填，以便追中来源
  */
 -(void) uploadSubjectPicture:(UIImage *)image
+                      userId:(NSString *) userId
                     progress:(void (^)(float progress)) uploadProgress
                uploadSuccess:(void (^)(NSString *imagaUrl))uploadSuccess
                searchSuccess:(void (^)(id responseObject))searchSuccess
